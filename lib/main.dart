@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     final home = AuthService.currentUser() == null ? const LoginPage() : const HomePage();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: hom,
+      home: ,
     );
   }
 }
