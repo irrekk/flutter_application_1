@@ -1,0 +1,31 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "spartans-4f161",
+          "appId": "1:616938197388:android:e0154a1592aa0f12f6c6a9",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "spartans-4f161",
+          "configurations": {
+            "android": "1:616938197388:android:e0154a1592aa0f12f6c6a9",
+            "ios": "1:616938197388:ios:55735dd25c18db02f6c6a9",
+            "macos": "1:616938197388:ios:55735dd25c18db02f6c6a9",
+            "web": "1:616938197388:web:b293bea6dcaad605f6c6a9",
+            "windows": "1:616938197388:web:720563e1e9ebc094f6c6a9"
+          }
+        }
+      }
+    }
+  },
+  "functions": {
+    "source": "functions",
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run build"
+    ]
+  }
+}}

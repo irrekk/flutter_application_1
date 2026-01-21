@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "616938197388",
+    "project_id": "spartans-4f161",
+    "storage_bucket": "spartans-4f161.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616938197388:android:e0154a1592aa0f12f6c6a9",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-NuVm_tItJagNSQndOLFmZcHpCvzBIkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
