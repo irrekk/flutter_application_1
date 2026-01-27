@@ -20,7 +20,7 @@ PLUGINS=(
     "cloud_firestore:6.1.1"
     "firebase_core:4.3.0"
     "firebase_messaging:16.1.0"
-    "flutter_secure_storage:8.0.0"
+    "flutter_secure_storage:10.0.0"
     "permission_handler_apple:9.4.7"
 )
 
