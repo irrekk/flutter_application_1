@@ -73,9 +73,10 @@ class _AdminPageState extends State<AdminPage> {
     final ok = await AuthService.adminCreateUser(newId: id, role: newRole);
 
     if (!mounted) return;
+    final pwd = AuthService.defaultPasswordForRole(newRole);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(ok ? '已新增帳號（初始密碼 20260101）' : '新增失敗：帳號可能已存在'),
+        content: Text(ok ? '已新增帳號（初始密碼 $pwd）' : '新增失敗：帳號可能已存在'),
       ),
     );
 
@@ -94,10 +95,10 @@ class _AdminPageState extends State<AdminPage> {
       return;
     }
 
-    final ok = await AuthService.adminResetPassword(id: id);
+    final newPwd = await AuthService.adminResetPassword(id: id);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(ok ? '已重設 $id 密碼為 20260101' : '重設失敗')),
+      SnackBar(content: Text(newPwd != null ? '已重設 $id 密碼為 $newPwd' : '重設失敗')),
     );
     setState(() {});
   }
@@ -285,7 +286,7 @@ class _AdminPageState extends State<AdminPage> {
           height: 48,
           child: ElevatedButton(
             onPressed: isAdmin ? _createUser : null,
-            child: const Text('新增帳號（初始密碼 20260101）'),
+            child: Text('新增帳號（初始密碼 ${AuthService.defaultPasswordForRole(newRole)}）'),
           ),
         ),
 

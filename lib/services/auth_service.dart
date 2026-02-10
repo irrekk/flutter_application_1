@@ -18,7 +18,12 @@ class LoginResult {
 }
 
 class AuthService {
-  static const String defaultPwd = '20260101';
+  static const String adminDefaultPwd = '20260101';
+  static const String userDefaultPwd = '0101';
+
+  static String defaultPasswordForRole(UserRole role) {
+    return role == UserRole.admin ? adminDefaultPwd : userDefaultPwd;
+  }
   // secure storage for saved credentials
   static const _storageId = 'auth_saved_id';
   static const _storagePwd = 'auth_saved_pwd';
@@ -293,8 +298,9 @@ class AuthService {
     final user = AppUser(
       id: key,
       role: role,
-      password: defaultPwd,
-      mustChangePassword: true,
+      password: defaultPasswordForRole(role),
+      // 只有非 admin 才需要強制改密碼
+      mustChangePassword: role != UserRole.admin,
     );
     await docRef.set(user);
     return true;
@@ -319,19 +325,21 @@ class AuthService {
     return true;
   }
 
-  static Future<bool> adminResetPassword({required String id}) async {
+  /// 管理員：重設非管理員密碼（回傳：重設後的新密碼；失敗回 null）
+  static Future<String?> adminResetPassword({required String id}) async {
     final me = currentUser();
-    if (me == null || !me.isAdmin) return false;
+    if (me == null || !me.isAdmin) return null;
 
     final key = _keyOf(id);
     final docRef = _usersRef.doc(key);
     final snap = await docRef.get();
     final u = snap.data();
-    if (u == null) return false;
-    if (u.isAdmin) return false;
+    if (u == null) return null;
+    if (u.isAdmin) return null;
 
+    final newPwd = defaultPasswordForRole(u.role);
     await docRef.update({
-      'password': defaultPwd,
+      'password': newPwd,
       'mustChangePassword': true,
     });
 
@@ -339,11 +347,11 @@ class AuthService {
       _currentUserCache = AppUser(
         id: u.id,
         role: u.role,
-        password: defaultPwd,
+        password: newPwd,
         displayName: u.displayName,
         mustChangePassword: true,
       );
     }
-    return true;
+    return newPwd;
   }
 }
