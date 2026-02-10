@@ -60,11 +60,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBKmHfHR3Yq0y8qE_bx0cqqmREHOBzbykE',
-    appId: '1:616938197388:ios:55735dd25c18db02f6c6a9',
+    appId: '1:616938197388:ios:3b17d9fa09f6e595f6c6a9',
     messagingSenderId: '616938197388',
     projectId: 'spartans-4f161',
     storageBucket: 'spartans-4f161.firebasestorage.app',
-    iosBundleId: 'com.example.flutterApplication1',
+    iosBundleId: 'com.ericsun.spartans',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(

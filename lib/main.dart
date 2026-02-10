@@ -5,6 +5,7 @@ import 'firebase_options.dart';
 import 'pages/login_page.dart';
 import 'pages/home_page.dart';
 import 'services/auth_service.dart';
+import 'services/notification_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,8 @@ Future<void> main() async {
   );
   // Try auto-login from secure storage before showing LoginPage
   await AuthService.tryAutoLogin();
+  // 初始化推播/訂閱 topic（避免自動登入時跳過）
+  await NotificationService.ensureInitialized();
   runApp(const MyApp());
 }
 
